@@ -37,7 +37,7 @@ FROM
 					EFFECTIVE_FROM_DATE) AS HOW,
 			*
 		FROM
-			DM.CLIENT_COPY
+			DM.CLIENT
 	) numbers
 WHERE
 	HOW = 2;
@@ -47,7 +47,7 @@ WHERE
 */
 
 --удаляем строки,ключ которых говорит о том что они дубли
-DELETE FROM DM.CLIENT_COPY
+DELETE FROM DM.CLIENT
 WHERE
 	(CLIENT_RK, EFFECTIVE_FROM_DATE) IN (
 		SELECT
@@ -58,6 +58,6 @@ WHERE
 	);
 
 --записываем наши бывшие дубли
-INSERT INTO DM.CLIENT_COPY 
+INSERT INTO DM.CLIENT 
 SELECT * FROM DUBLES;
 
